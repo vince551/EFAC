@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EFAC MiniP Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+              <img src="efac.jpg" alt="EFAC Logo" class="sidebar-logo">
+            </div>
+            <h3>EFAC MiniP</h3>
+        </div>
+        
+        <nav class="nav-links">
+            <div class="nav-heading"><i class="fas fa-th-large"></i> Dashboard</div>
+            
+            <a href="#" class="nav-item active" data-section="dashboard">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="#" class="nav-item" data-section="profile-section">
+                <i class="fas fa-user-graduate"></i> Me
+            </a>
+            <a href="#" class="nav-item" data-section="news-section">
+                <i class="fas fa-bullhorn"></i> News
+            </a>
+            <a href="#" class="nav-item" data-section="reports-section">
+                <i class="fas fa-file-invoice"></i> Reports
+            </a>
+            <a href="#" class="nav-item" data-section="about-section">
+                <i class="fas fa-question-circle"></i> About
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </aside>
+<main class="main-content">
+    <header class="top-bar">
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search for mentors, news, or hub...">
+        </div>
+        <div class="user-info">
+            <div class="notifications"><i class="fas fa-bell"></i><span class="badge">2</span></div>
+            <strong>Scholar</strong>
+            <div class="avatar">S</div>
+        </div>
+    </header>
+
+    <section id="dashboard" class="content-section">
+        <section class="page-intro">
+            <h1>EFAC MiniP Dashboard</h1>
+            <p>Welcome back! Track your performance and connect with the EFAC community.</p>
+        </section>
+        <div class="card-grid">
+            <div class="dashboard-card" onclick="showSection('reports-section')">
+                <div class="card-icon"><i class="fas fa-file-invoice"></i></div>
+                <h2>Reports & Ranking</h2>
+                <p>Auto-fill academic data and track your standing.</p>
+            </div>
+            <div class="dashboard-card">
+                <div class="card-icon"><i class="fas fa-comments"></i></div>
+                <h2>Meeting Hub</h2>
+                <p>Chat with scholars and join virtual sessions.</p>
+            </div>
+            <div class="dashboard-card">
+                <div class="card-icon"><i class="fas fa-user-friends"></i></div>
+                <h2>Mentorship</h2>
+                <p>Connect 1-on-1 with career mentors.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="reports-section" class="content-section" style="display: none; padding: 40px;">
+        <div class="reports-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h2>Academic Hub</h2>
+            <div class="ranking-pill" style="background: #f39c12; color: white; padding: 10px 20px; border-radius: 50px; font-weight: bold;">
+                Global Rank: <span>#--</span>
+            </div>
+        </div>
+
+        <div class="reports-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="auth-card">
+                <div class="upload-zone" onclick="document.getElementById('reportUpload').click()" style="border: 2px dashed #f39c12; padding: 40px; text-align: center; border-radius: 15px; cursor: pointer;">
+                    <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; color: #f39c12;"></i>
+                    <p>Click to upload Report Card</p>
+                    <input type="file" id="reportUpload" hidden>
+                </div>
+                <button class="auto-fill-btn" onclick="simulateAutoFill()" style="width: 100%; margin-top: 20px;">Analyze & Rank</button>
+            </div>
+
+            <div class="stat-card" style="background: white; padding: 20px; border-radius: 15px; text-align: center; border: 1px solid #eee;">
+                <h4>Current Mean Score</h4>
+                <div class="progress-circle" style="width: 100px; height: 100px; border: 8px solid #f39c12; border-radius: 50%; margin: 20px auto; display: flex; align-items: center; justify-content: center;">
+                    <span class="percentage" style="font-size: 1.5rem; font-weight: bold;">0%</span>
+                </div>
+                <p>Subjects Tracked: <span class="stat-number">0</span></p>
+            </div>
+        </div>
+
+        <div class="analytics-section" style="margin-top: 40px; background: white; padding: 20px; border-radius: 15px;">
+            <h3>Visual Performance Tracking</h3>
+            <div class="bar-container" style="display: flex; align-items: flex-end; justify-content: space-around; height: 200px; border-bottom: 2px solid #001a35; margin-top: 20px;">
+                <div class="bar" id="bar1" style="width: 40px; background: #001a35; transition: height 1s;"></div>
+                <div class="bar" id="bar2" style="width: 40px; background: #001a35; transition: height 1s;"></div>
+                <div class="bar active" id="bar3" style="width: 40px; background: #f39c12; transition: height 1s;"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="profile-section" class="content-section" style="display: none; padding: 40px;">
+        <div class="auth-card">
+            <h2>Scholar Profile</h2>
+            <div class="input-group">
+                <label>Name</label>
+                <input type="text" id="profile-display-name" value="User">
+            </div>
+            <button class="auth-btn">Save</button>
+        </div>
+    </section>
+</main>
+
+    <script src="script.js"></script>
+</body>
+</html>
