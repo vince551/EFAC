@@ -67,8 +67,13 @@
                 <h2>Reports & Ranking</h2>
                 <p>Auto-fill academic data and track your standing.</p>
             </div>
-            <div class="dashboard-card">
-                <div class="card-icon"><i class="fas fa-comments"></i></div>
+            <div class="dashboard-card" onclick="showSection('fun-hub')">
+    <div class="card-icon"><i class="fas fa-gamepad"></i></div>
+    <h2>Fun & Skills Hub</h2>
+        <p>Relax and sharpen your mind with scholar-approved games.</p>
+            </div>
+            <div class="dashboard-card" onclick="showSection('meeting-hub')">
+            <div class="card-icon"><i class="fas fa-comments"></i></div>
                 <h2>Meeting Hub</h2>
                 <p>Chat with scholars and join virtual sessions.</p>
             </div>
@@ -84,7 +89,7 @@
         <div class="reports-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
             <h2>Academic Hub</h2>
             <div class="ranking-pill" style="background: #f39c12; color: white; padding: 10px 20px; border-radius: 50px; font-weight: bold;">
-                Global Rank: <span>#--</span>
+                Global Rank: <span>=></span>
             </div>
         </div>
 
@@ -127,6 +132,75 @@
             <button class="auth-btn">Save</button>
         </div>
     </section>
+
+<section id="meeting-hub" class="content-section" style="display: none;">
+    <div class="hub-container">
+        <div class="meeting-layout">
+            <div class="channel-sidebar">
+                <div class="sidebar-top">
+                    <h4><i class="fas fa-users"></i> Channels</h4>
+                </div>
+            <div class="channel-list">
+                <div class="channel active" onclick="switchChannel(this, 'general-scholars')">
+                <i class="fas fa-hashtag"></i> general-scholars
+            </div>
+            <div class="channel" onclick="switchChannel(this, 'career-mentorship')">
+                <i class="fas fa-hashtag"></i> career-mentorship
+            </div>
+            <div class="channel" onclick="switchChannel(this, 'study-groups')">
+              <i class="fas fa-hashtag"></i> study-groups
+            </div>
+    <div class="channel" onclick="switchChannel(this, 'skill-sharing')">
+        <i class="fas fa-hashtag"></i> skill-sharing
+    </div>
+</div>
+                
+                <div class="requests-section">
+                    <h4>Connect Requests</h4>
+                    <div class="request-item" id="req-1">
+                        <span>Vince Odhiambo</span>
+                        <div class="req-btns">
+                            <button class="btn-acc" onclick="handleRequest('req-1', 'Accepted')">✓</button>
+                            <button class="btn-den" onclick="handleRequest('req-1', 'Denied')">✕</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-main">
+                <div class="chat-header">
+                    <div class="header-info">
+                        <h3 id="current-channel-name"># general-scholars</h3>
+                        <span>12 Scholars Online</span>
+                    </div>
+                    <div class="header-tools">
+                        <i class="fas fa-search"></i>
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                </div>
+
+                <div class="chat-display" id="chat-box">
+                    <div class="message incoming">
+                        <div class="msg-avatar">A</div>
+                        <div class="msg-content">
+                            <span class="msg-author">Admin</span>
+                            <p>Welcome to the EFAC Chat Space! This is a safe place for all scholars.</p>
+                            <span class="msg-time">10:00 AM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-wrapper">
+                    <div class="input-container">
+                        <button class="attach-btn"><i class="fas fa-plus"></i></button>
+                        <input type="text" id="chatInput" placeholder="Message #general-scholars...">
+                        <button class="send-btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </main>
 
     <script src="script.js"></script>
