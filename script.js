@@ -30,7 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 2. ACADEMIC HUB: AI ANALYSIS ---
+    // --- 2. ACADEMIC HUB: AI ANALYSIS So hapa ndio imebeba iyo synction so that msee 
+    // can easily be filled in and get ranked immediately he submits 
+    // his/her report card...... ---
     window.simulateAutoFill = function() {
         const btn = document.querySelector('.auto-fill-btn');
         const fileInput = document.getElementById('reportUpload');
@@ -137,4 +139,19 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => req.remove(), 500);
         }, 1500);
     };
+
+    window.showSection('about-section');
 });
+
+// Add this or modify existing nav listener
+navItems.forEach(item => {
+    item.addEventListener('click', function() {
+        const target = this.getAttribute('data-section');
+        if (target === 'profile-section') {
+            showSection('about-section'); // This shows the new vibrant About page
+        } else {
+            showSection(target);
+        }
+    });
+});
+
