@@ -1,0 +1,25 @@
+{
+  "name": "EFAC Scholar Platform",
+  "short_name": "EFAC",
+  "description": "Education For All Children — scholar dashboard, academic tracking and community platform.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#06111f",
+  "theme_color": "#001a35",
+  "icons": [
+    {
+      "src": "efac.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "efac.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
