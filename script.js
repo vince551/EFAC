@@ -4,6 +4,68 @@ document.addEventListener('DOMContentLoaded', () => {
     const landing = document.getElementById('landing');
     const savedTheme = localStorage.getItem('efac-theme');
 
+    // Replace the fixed sidebar with a compact premium dashboard dropdown.
+    const uiStyle = document.createElement('style');
+    uiStyle.textContent = `
+      .sidebar{display:none!important}
+      .main-content{margin-left:0!important;width:100%!important}
+      .top-bar{padding:0 28px!important}
+      .top-dashboard{position:relative;margin-right:auto;display:flex;align-items:center}
+      .dashboard-trigger{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);font-weight:800;cursor:pointer;box-shadow:0 6px 20px rgba(8,28,48,.05);transition:var(--ease)}
+      .dashboard-trigger:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(8,28,48,.09)}
+      .dashboard-trigger .trigger-logo{width:28px;height:28px;border-radius:8px;object-fit:cover}
+      .dashboard-trigger .chevron{font-size:.7rem;color:var(--muted);transition:transform .2s ease}
+      .top-dashboard.open .chevron{transform:rotate(180deg)}
+      .dashboard-menu{position:absolute;top:54px;left:0;width:250px;padding:8px;background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 22px 55px rgba(8,28,48,.16);opacity:0;visibility:hidden;transform:translateY(-7px);transition:var(--ease);z-index:1200}
+      .top-dashboard.open .dashboard-menu{opacity:1;visibility:visible;transform:none}
+      .dashboard-menu-label{padding:9px 11px 6px;color:var(--muted);font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em}
+      .dashboard-menu a{display:flex;align-items:center;gap:11px;padding:11px;border-radius:11px;color:var(--ink);text-decoration:none;font-size:.82rem;font-weight:700;cursor:pointer}
+      .dashboard-menu a:hover,.dashboard-menu a.active{background:rgba(245,158,11,.1);color:#9a5a00}
+      .dashboard-menu a i{width:19px;text-align:center;color:var(--orange)}
+      .dashboard-menu .menu-divider{height:1px;background:var(--line);margin:6px 4px}
+      .dashboard-menu .exit{color:#9b3c3c}
+      .dashboard-menu .exit i{color:#c85a5a}
+      .mobile-nav{display:none!important}
+      @media(max-width:760px){.top-bar{padding:0 15px!important}.search-container{display:none!important}.top-dashboard{margin-right:0}.dashboard-trigger{padding:8px 10px}.dashboard-menu{width:235px}.user-info strong{display:none}.top-bar{height:70px}}
+    `;
+    document.head.appendChild(uiStyle);
+
+    const topBar = document.querySelector('.top-bar');
+    const dashboard = document.createElement('div');
+    dashboard.className = 'top-dashboard';
+    dashboard.innerHTML = `
+      <button class="dashboard-trigger" aria-expanded="false" aria-haspopup="true">
+        <img src="efac.jpg" class="trigger-logo" alt="EFAC">
+        <span>Dashboard</span>
+        <i class="fas fa-chevron-down chevron"></i>
+      </button>
+      <div class="dashboard-menu" role="menu">
+        <div class="dashboard-menu-label">Workspace</div>
+        <a data-section="dashboard" class="active"><i class="fas fa-grid-2"></i> Overview</a>
+        <a data-section="profile-section"><i class="fas fa-user-graduate"></i> My Profile</a>
+        <a data-section="reports-section"><i class="fas fa-chart-line"></i> Academic Hub</a>
+        <a data-section="meeting-hub"><i class="fas fa-comments"></i> Community</a>
+        <a data-section="news-section"><i class="fas fa-bullhorn"></i> News</a>
+        <a data-section="about-section"><i class="fas fa-circle-info"></i> About EFAC</a>
+        <div class="menu-divider"></div>
+        <a class="exit" id="dropdown-exit"><i class="fas fa-arrow-right-from-bracket"></i> Exit platform</a>
+      </div>`;
+    if (topBar) topBar.prepend(dashboard);
+
+    const trigger = dashboard.querySelector('.dashboard-trigger');
+    const menuLinks = dashboard.querySelectorAll('.dashboard-menu a[data-section]');
+    trigger?.addEventListener('click', e => {
+        e.stopPropagation();
+        const open = dashboard.classList.toggle('open');
+        trigger.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', e => {
+        if (!dashboard.contains(e.target)) {
+            dashboard.classList.remove('open');
+            trigger?.setAttribute('aria-expanded', 'false');
+        }
+    });
+
     if (savedTheme === 'dark') document.body.classList.add('dark');
 
     window.enterPlatform = function () {
@@ -38,10 +100,12 @@ document.addEventListener('DOMContentLoaded', () => {
             target.classList.add('content-section');
         }
         navItems.forEach(item => item.classList.toggle('active', item.dataset.section === sectionId));
-        document.querySelectorAll('.mobile-nav a').forEach(link => link.classList.remove('active'));
-        const mobileMap = { dashboard: 0, 'reports-section': 1, 'meeting-hub': 2, 'profile-section': 3 };
-        const mobileIndex = mobileMap[sectionId];
-        if (mobileIndex !== undefined) document.querySelectorAll('.mobile-nav a')[mobileIndex]?.classList.add('active');
+        menuLinks.forEach(item => item.classList.toggle('active', item.dataset.section === sectionId));
+        const label = dashboard.querySelector('.dashboard-trigger span');
+        const active = [...menuLinks].find(item => item.dataset.section === sectionId);
+        if (label && active) label.textContent = active.textContent.trim();
+        dashboard.classList.remove('open');
+        trigger?.setAttribute('aria-expanded', 'false');
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
@@ -49,6 +113,11 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         showSection(item.dataset.section);
     }));
+    menuLinks.forEach(item => item.addEventListener('click', e => {
+        e.preventDefault();
+        showSection(item.dataset.section);
+    }));
+    dashboard.querySelector('#dropdown-exit')?.addEventListener('click', showLanding);
 
     const fileInput = document.getElementById('reportUpload');
     const uploadLabel = document.getElementById('uploadLabel');
