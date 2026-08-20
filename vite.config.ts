@@ -5,6 +5,12 @@ import { VitePWA } from 'vite-plugin-pwa'
 export default defineConfig({
   plugins: [
     react(),
+    {
+      name: 'efac-react-entry',
+      transformIndexHtml() {
+        return [{ tag: 'script', attrs: { type: 'module', src: '/src/boot.ts' }, injectTo: 'body' }]
+      }
+    },
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['efac.jpg'],
