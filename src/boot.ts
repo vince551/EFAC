@@ -1,21 +1,19 @@
-import { supabase, isSupabaseConfigured } from './lib/supabase';
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App'
 
-const setConnectionState = (connected: boolean) => {
-  document.documentElement.dataset.backend = connected ? 'supabase' : 'demo';
-};
+import { supabase, isSupabaseConfigured } from './lib/supabase'
 
-setConnectionState(isSupabaseConfigured);
+document.documentElement.dataset.backend = isSupabaseConfigured ? 'supabase' : 'demo'
 
 if (supabase) {
   supabase.auth.getSession().then(({ data }) => {
-    window.dispatchEvent(new CustomEvent('efac:session', { detail: data.session }));
-  });
-
+    window.dispatchEvent(new CustomEvent('efac:session', { detail: data.session }))
+  })
   supabase.auth.onAuthStateChange((_event, session) => {
-    window.dispatchEvent(new CustomEvent('efac:session', { detail: session }));
-  });
+    window.dispatchEvent(new CustomEvent('efac:session', { detail: session }))
+  })
 }
 
-console.info(
-  `[EFAC] Runtime: ${isSupabaseConfigured ? 'Supabase connected' : 'demo mode — configure .env.local'}`,
-);
+document.body.innerHTML = '<div id="root"></div>'
+createRoot(document.getElementById('root')!).render(React.createElement(App))
