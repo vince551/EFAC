@@ -2,341 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>EFAC MiniP Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#06111f">
+    <meta name="description" content="EFAC — Education For All Children scholar platform.">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="efac.jpg" type="image/png">
+    <link rel="apple-touch-icon" href="efac.jpg">
+    <title>EFAC — Scholar Platform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <aside class="sidebar">
-        <div class="sidebar-header">
-            <div class="logo-container">
-              <img src="efac.jpg" alt="EFAC Logo" class="sidebar-logo">
-            </div>
-            <h3>EFAC MiniP</h3>
-        </div>
-        
-        <nav class="nav-links">
-            <div class="nav-heading"><i class="fas fa-th-large"></i> Dashboard</div>
-            
-            <a href="#" class="nav-item active" data-section="dashboard">
-                <i class="fas fa-home"></i> Home
-            </a>
-            <a href="#" class="nav-item" data-section="profile-section">
-                <i class="fas fa-user-graduate"></i> Me
-            </a>
-            <a href="#" class="nav-item" data-section="news-section">
-                <i class="fas fa-bullhorn"></i> News
-            </a>
-            <a href="#" class="nav-item" data-section="reports-section">
-                <i class="fas fa-file-invoice"></i> Reports
-            </a>
-            <a href="#" class="nav-item" data-section="about-section">
-                <i class="fas fa-question-circle"></i> About
-            </a>
-        </nav>
-    </aside>
+<aside class="sidebar">
+  <div class="sidebar-header"><div class="logo-container"><img src="efac.jpg" alt="EFAC logo" class="sidebar-logo"><h3>EFAC</h3></div></div>
+  <nav class="nav-links">
+    <div class="nav-heading">Workspace</div>
+    <a href="#" class="nav-item active" data-section="dashboard"><i class="fas fa-grid-2"></i><span>Overview</span></a>
+    <a href="#" class="nav-item" data-section="profile-section"><i class="fas fa-user-graduate"></i><span>My Profile</span></a>
+    <a href="#" class="nav-item" data-section="news-section"><i class="fas fa-bullhorn"></i><span>News</span></a>
+    <a href="#" class="nav-item" data-section="reports-section"><i class="fas fa-chart-line"></i><span>Academic Hub</span></a>
+    <a href="#" class="nav-item" data-section="meeting-hub"><i class="fas fa-comments"></i><span>Community</span></a>
+    <a href="#" class="nav-item" data-section="about-section"><i class="fas fa-circle-info"></i><span>About EFAC</span></a>
+  </nav>
+</aside>
 <main class="main-content">
-    <header class="top-bar">
-        <div class="search-container">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="Search for mentors, news, or hub...">
-        </div>
-        <div class="user-info">
-            <div class="notifications"><i class="fas fa-bell"></i><span class="badge">2</span></div>
-            <strong>Scholar</strong>
-            <div class="avatar">S</div>
-        </div>
-    </header>
-
-    <section id="dashboard" class="content-section">
-        <section class="page-intro">
-            <h1>EFAC MiniP Dashboard</h1>
-            <p>Welcome back! Track your performance and connect with the EFAC community.</p>
-        </section>
-        <div class="card-grid">
-            <div class="dashboard-card" onclick="showSection('reports-section')">
-                <div class="card-icon"><i class="fas fa-file-invoice"></i></div>
-                <h2>Reports & Ranking</h2>
-                <p>Auto-fill academic data and track your standing.</p>
-            </div>
-            <div class="dashboard-card" onclick="showSection('meeting-hub')">
-            <div class="card-icon"><i class="fas fa-comments"></i></div>
-                <h2>Meeting Hub</h2>
-                <p>Chat with scholars and join virtual sessions.</p>
-            </div>
-            <div class="dashboard-card">
-                <div class="card-icon"><i class="fas fa-user-friends"></i></div>
-                <h2>Mentorship</h2>
-                <p>Connect 1-on-1 with career mentors.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="reports-section" class="content-section" style="display: none; padding: 40px;">
-        <div class="reports-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <h2>Academic Hub</h2>
-            <div class="ranking-pill" style="background: #f39c12; color: white; padding: 10px 20px; border-radius: 50px; font-weight: bold;">
-                Global Rank: <span>=></span>
-            </div>
-        </div>
-
-        <div class="reports-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-            <div class="auth-card">
-                <div class="upload-zone" onclick="document.getElementById('reportUpload').click()" style="border: 2px dashed #f39c12; padding: 40px; text-align: center; border-radius: 15px; cursor: pointer;">
-                    <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; color: #f39c12;"></i>
-                    <p>Click to upload Report Card</p>
-                    <input type="file" id="reportUpload" hidden>
-                </div>
-                <button class="auto-fill-btn" onclick="simulateAutoFill()" style="width: 100%; margin-top: 20px;">Analyze & Rank</button>
-            </div>
-
-            <div class="stat-card" style="background: white; padding: 20px; border-radius: 15px; text-align: center; border: 1px solid #eee;">
-                <h4>Current Mean Score</h4>
-                <div class="progress-circle" style="width: 100px; height: 100px; border: 8px solid #f39c12; border-radius: 50%; margin: 20px auto; display: flex; align-items: center; justify-content: center;">
-                    <span class="percentage" style="font-size: 1.5rem; font-weight: bold;">0%</span>
-                </div>
-                <p>Subjects Tracked: <span class="stat-number">0</span></p>
-            </div>
-        </div>
-
-        <div class="analytics-section" style="margin-top: 40px; background: white; padding: 20px; border-radius: 15px;">
-            <h3>Visual Performance Tracking</h3>
-            <div class="bar-container" style="display: flex; align-items: flex-end; justify-content: space-around; height: 200px; border-bottom: 2px solid #001a35; margin-top: 20px;">
-                <div class="bar" id="bar1" style="width: 40px; background: #001a35; transition: height 1s;"></div>
-                <div class="bar" id="bar2" style="width: 40px; background: #001a35; transition: height 1s;"></div>
-                <div class="bar active" id="bar3" style="width: 40px; background: #f39c12; transition: height 1s;"></div>
-            </div>
-        </div>
-    </section>
-
-    <section id="profile-section" class="content-section" style="display: none; padding: 40px;">
-        <div class="auth-card">
-            <h2>Scholar Profile</h2>
-            <div class="input-group">
-                <label>Name</label>
-                <input type="text" id="profile-display-name" value="User">
-            </div>
-            <button class="auth-btn">Save</button>
-        </div>
-    </section>
-<section id="about-section" class="content-section">
-    <div class="about-hero">
-        <h1>About EFAC</h1>
-        <p class="hero-lead">Education For All Children</p>
-    </div>
-
-    <div class="container">
-        <div class="mv-container">
-            <div class="mv-box mission">
-                <i class="fas fa-rocket"></i>
-                <h3>Our Mission</h3>
-                <p>To empower talented students from low-income backgrounds with access to quality education and long-term success.</p>
-            </div>
-            <div class="mv-box vision">
-                <i class="fas fa-eye"></i>
-                <h3>Our Vision</h3>
-                <p>A world where every child has equal access to education and the opportunity to reach their full potential.</p>
-            </div>
-        </div>
-
-        <div class="approach-grid">
-            <div class="approach-item" onclick="openCard('academic')">
-                <i class="fas fa-graduation-cap"></i>
-                <strong>Academic Access</strong>
-                <span>Scholarships & Academic Support</span>
-            </div>
-
-            <div class="approach-item" onclick="openCard('leadership')">
-                <i class="fas fa-users"></i>
-                <strong>Leadership</strong>
-                <span>Skills & Community Engagement</span>
-            </div>
-
-            <div class="approach-item" onclick="openCard('career')">
-                <i class="fas fa-briefcase"></i>
-                <strong>Career Pathways</strong>
-                <span>Mentorship & Job Readiness</span>
-            </div>
-        </div>
-
-            <div class="impact-stats">
-    <div class="stat-item">
-        <h2 class="counter">98%</h2>
-        <p>University Transition</p>
-    </div>
-    <div class="stat-item">
-        <h2 class="counter">700+</h2>
-        <p>Active Scholars</p>
-    </div>
-    <div class="stat-item">
-        <h2 class="counter">50+</h2>
-        <p>Partner Schools</p>
-    </div>
-</div>
-
-<div class="efac-fun-fact">
-    <div class="fact-content">
-        <i class="fas fa-lightbulb"></i>
-        <div>
-            <h3>Did You Know?</h3>
-            <p>EFAC doesn't just pay fees; we provide 8 years of support from the start of high school through the end of university!</p>
-        </div>
-    </div>
-</div>
-
-<div class="alumni-highlight">
-    <div class="alumni-card">
-        <div class="alumni-img-wrapper">
-            <img src="efac.jpg" alt="Scholar"> </div>
-        <div class="alumni-info">
-            <span class="alumni-tag">Alumni Spotlight</span>
-            <h3>"EFAC changed my trajectory."</h3>
-            <p>From a small village in Nakuru to a Software Engineer in Nairobi, the mentorship I received was as valuable as the tuition.</p>
-            <strong>— Joseph K., Class of 2018</strong>
-        </div>
-    </div>
-</div>
-
-<div class="partner-bar">
-    <p>Empowering Kenyan Youth in Partnership With:</p>
-    <div class="logo-track">
-        <span><i class="fas fa-university"></i> Partner Schools</span>
-        <span><i class="fas fa-hand-holding-heart"></i> Global Donors</span>
-        <span><i class="fas fa-briefcase"></i> Corporate Kenya</span>
-        <span><i class="fas fa-globe"></i> International NGOs</span>
-    </div>
-</div>
-
-<div class="about-cta-container">
-    <div class="cta-wave">
-        <svg viewBox="0 0 1440 320">
-            <path fill="#ffffff" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
-        </svg>
-    </div>
-    
-    <div class="cta-content">
-        <div class="cta-icon-stack">
-            <i class="fas fa-heart"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-user-friends"></i>
-        </div>
-        <h2>Ready to Change a Life?</h2>
-        <p>Whether you're a scholar looking to connect or a supporter looking to give back, there's a seat at the table for you.</p>
-        
-        <div class="cta-buttons-wrapper">
-            <button class="cta-btn main-btn" onclick="showSection('chat-section')">
-                <span>Go to Community</span>
-                <i class="fas fa-arrow-right"></i>
-            </button>
-            <button class="cta-btn glass-btn">
-                <span>Become a Mentor</span>
-                <i class="fas fa-handshake"></i>
-            </button>
-        </div>
-        
-        <div class="cta-footer-tag">
-            <p><i class="fas fa-shield-alt"></i> Join 700+ scholars already leading the way.</p>
-        </div>
-    </div>
-</div>iv>
-</div>
-
-<div class="mandela-quote-section">
-    <div class="quote-container">
-        <i class="fas fa-quote-left quote-icon"></i>
-        <blockquote>
-            "Education is the most powerful weapon which you can use to change the world."
-        </blockquote>
-        <div class="quote-author">
-            <span class="author-name">Nelson Mandela</span>
-            <span class="author-title">EFAC Guiding Principle</span>
-        </div>
-        <div class="quote-decoration"></div>
-    </div>
-</div>
-    </div>
+<header class="top-bar">
+  <div class="search-container"><i class="fas fa-search"></i><input type="search" placeholder="Search EFAC..." aria-label="Search EFAC"></div>
+  <div class="user-info"><div class="notifications" aria-label="Notifications"><i class="fas fa-bell"></i><span class="badge">2</span></div><strong>Scholar</strong><div class="avatar">S</div></div>
+</header>
+<section id="dashboard" class="content-section">
+  <section class="page-intro"><h1>Welcome back, Scholar.</h1><p>Your EFAC workspace for academic progress, community and opportunity.</p></section>
+  <div class="card-grid">
+    <div class="dashboard-card" onclick="showSection('reports-section')"><div class="card-icon"><i class="fas fa-chart-column"></i></div><h2>Academic Hub</h2><p>Upload reports, track performance and understand your progress.</p></div>
+    <div class="dashboard-card" onclick="showSection('meeting-hub')"><div class="card-icon"><i class="fas fa-comments"></i></div><h2>Community</h2><p>Connect with scholars, mentors and study groups.</p></div>
+    <div class="dashboard-card" onclick="showSection('profile-section')"><div class="card-icon"><i class="fas fa-user-friends"></i></div><h2>Mentorship</h2><p>Build meaningful connections and explore career pathways.</p></div>
+  </div>
 </section>
-    
+<section id="reports-section" class="content-section" style="display:none;padding:40px">
+ <div class="reports-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px"><h2>Academic Hub</h2><div class="ranking-pill" style="background:#f59e0b;color:white;padding:10px 20px;border-radius:50px;font-weight:bold">Global Rank: <span>—</span></div></div>
+ <div class="reports-container" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+  <div class="auth-card"><h3>Report Card</h3><p style="color:#6b7b8f;margin:8px 0 20px">Upload a PDF or image to analyze your academic performance.</p><div class="upload-zone" onclick="document.getElementById('reportUpload').click()" style="padding:40px;text-align:center;border-radius:15px;cursor:pointer"><i class="fas fa-cloud-arrow-up" style="font-size:3rem;color:#f59e0b"></i><p id="uploadLabel">Choose report card</p><input type="file" id="reportUpload" hidden accept=".pdf,image/*"></div><button class="auto-fill-btn" onclick="simulateAutoFill()" style="width:100%;margin-top:20px">Analyze & Rank</button></div>
+  <div class="stat-card" style="padding:25px;text-align:center"><h4>Current Mean Score</h4><div class="progress-circle" style="width:100px;height:100px;border-radius:50%;margin:20px auto;display:flex;align-items:center;justify-content:center"><span class="percentage" style="font-size:1.5rem;font-weight:bold">0%</span></div><p>Subjects tracked: <span class="stat-number">0</span></p></div>
+ </div>
+ <div class="analytics-section" style="margin-top:25px;padding:25px"><h3>Performance snapshot</h3><p style="color:#6b7b8f;margin-top:5px">Your latest academic trend will appear here.</p><div class="bar-container" style="display:flex;align-items:flex-end;justify-content:space-around;height:200px;border-bottom:2px solid #dbe3ec;margin-top:20px"><div class="bar" id="bar1" style="width:48px;height:0;transition:height 1s"></div><div class="bar" id="bar2" style="width:48px;height:0;transition:height 1s"></div><div class="bar active" id="bar3" style="width:48px;height:0;transition:height 1s"></div></div></div>
 </section>
-<section id="meeting-hub" class="content-section" style="display: none;">
-    <div class="hub-container">
-        <div class="meeting-layout">
-            <div class="channel-sidebar">
-                <div class="sidebar-top">
-                    <h4><i class="fas fa-users"></i> Channels</h4>
-                </div>
-            <div class="channel-list">
-                <div class="channel active" onclick="switchChannel(this, 'general-scholars')">
-                <i class="fas fa-hashtag"></i> general-scholars
-            </div>
-            <div class="channel" onclick="switchChannel(this, 'career-mentorship')">
-                <i class="fas fa-hashtag"></i> career-mentorship
-            </div>
-            <div class="channel" onclick="switchChannel(this, 'study-groups')">
-              <i class="fas fa-hashtag"></i> study-groups
-            </div>
-    <div class="channel" onclick="switchChannel(this, 'skill-sharing')">
-        <i class="fas fa-hashtag"></i> skill-sharing
-    </div>
-</div>
-                
-                <div class="requests-section">
-                    <h4>Connect Requests</h4>
-                    <div class="request-item" id="req-1">
-                        <span>Vince Odhiambo</span>
-                        <div class="req-btns">
-                            <button class="btn-acc" onclick="handleRequest('req-1', 'Accepted')">✓</button>
-                            <button class="btn-den" onclick="handleRequest('req-1', 'Denied')">✕</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="chat-main">
-                <div class="chat-header">
-                    <div class="header-info">
-                        <h3 id="current-channel-name"># general-scholars</h3>
-                        <span>12 Scholars Online</span>
-                    </div>
-                    <div class="header-tools">
-                        <i class="fas fa-search"></i>
-                        <i class="fas fa-user-plus"></i>
-                    </div>
-                </div>
-
-                <div class="chat-display" id="chat-box">
-                    <div class="message incoming">
-                        <div class="msg-avatar">A</div>
-                        <div class="msg-content">
-                            <span class="msg-author">Admin</span>
-                            <p>Welcome to the EFAC Chat Space! This is a safe place for all scholars.</p>
-                            <span class="msg-time">10:00 AM</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="chat-input-wrapper">
-                    <div class="input-container">
-                        <button class="attach-btn"><i class="fas fa-plus"></i></button>
-                        <input type="text" id="chatInput" placeholder="Message #general-scholars...">
-                        <button class="send-btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<section id="profile-section" class="content-section" style="display:none;padding:40px"><div class="auth-card"><h2>My Profile</h2><p style="color:#6b7b8f;margin:7px 0 25px">Keep your scholar information up to date.</p><div class="input-group"><label>Name</label><input type="text" id="profile-display-name" value="User"></div><button class="auth-btn" onclick="editProfile()">Save profile</button></div></section>
+<section id="news-section" class="content-section" style="display:none;padding:40px"><div class="auth-card" style="max-width:1000px"><h2>EFAC News</h2><p style="color:#6b7b8f;margin:7px 0 25px">Updates, opportunities and announcements for the EFAC community.</p><div class="card-grid" style="padding:0"><div class="dashboard-card"><div class="card-icon"><i class="fas fa-bullhorn"></i></div><h2>Community update</h2><p>New opportunities and scholar announcements will appear here.</p></div><div class="dashboard-card"><div class="card-icon"><i class="fas fa-calendar"></i></div><h2>Upcoming sessions</h2><p>Keep an eye on the Meeting Hub for live sessions and study groups.</p></div></div></div></section>
+<section id="about-section" class="content-section"><div class="about-hero"><h1>About EFAC</h1><p class="hero-lead">Education For All Children</p></div><div class="container"><div class="mv-container"><div class="mv-box mission"><i class="fas fa-rocket"></i><h3>Our Mission</h3><p>To empower talented students from low-income backgrounds with access to quality education and long-term success.</p></div><div class="mv-box vision"><i class="fas fa-eye"></i><h3>Our Vision</h3><p>A world where every child has equal access to education and the opportunity to reach their full potential.</p></div></div><div class="approach-grid"><div class="approach-item"><i class="fas fa-graduation-cap"></i><strong>Academic Access</strong><span>Scholarships & academic support</span></div><div class="approach-item"><i class="fas fa-users"></i><strong>Leadership</strong><span>Skills & community engagement</span></div><div class="approach-item"><i class="fas fa-briefcase"></i><strong>Career Pathways</strong><span>Mentorship & job readiness</span></div></div><div class="impact-stats"><div class="stat-item"><h2>98%</h2><p>University Transition</p></div><div class="stat-item"><h2>700+</h2><p>Active Scholars</p></div><div class="stat-item"><h2>50+</h2><p>Partner Schools</p></div></div><div class="efac-fun-fact"><div class="fact-content"><i class="fas fa-lightbulb"></i><div><h3>Did You Know?</h3><p>EFAC provides long-term support from the start of high school through the end of university.</p></div></div></div><div class="alumni-highlight"><div class="alumni-card"><div class="alumni-img-wrapper"><img src="efac.jpg" alt="EFAC scholar"></div><div class="alumni-info"><span class="alumni-tag">Alumni Spotlight</span><h3>“EFAC changed my trajectory.”</h3><p>Mentorship can be as valuable as tuition when a scholar is building a future.</p><strong>— EFAC Alumni</strong></div></div></div><div class="partner-bar"><p>Empowering Kenyan youth through education and opportunity.</p><div class="logo-track"><span><i class="fas fa-university"></i> Partner Schools</span><span><i class="fas fa-heart"></i> Global Donors</span><span><i class="fas fa-briefcase"></i> Corporate Kenya</span><span><i class="fas fa-globe"></i> International NGOs</span></div></div><div class="about-cta-container"><div class="cta-content"><div class="cta-icon-stack"><i class="fas fa-heart"></i></div><h2>Ready to Change a Life?</h2><p>Whether you're a scholar, mentor or supporter, there's a place for you in the EFAC community.</p><div class="cta-buttons-wrapper"><button class="cta-btn main-btn" onclick="showSection('meeting-hub')">Go to Community <i class="fas fa-arrow-right"></i></button><button class="cta-btn glass-btn" onclick="showSection('profile-section')">My Profile <i class="fas fa-user"></i></button></div></div></div><div class="mandela-quote-section"><div class="quote-container"><i class="fas fa-quote-left quote-icon"></i><blockquote>“Education is the most powerful weapon which you can use to change the world.”</blockquote><div class="quote-author"><span class="author-name">Nelson Mandela</span><span class="author-title">EFAC Guiding Principle</span></div></div></div></div></section>
+<section id="meeting-hub" class="content-section" style="display:none"><div class="hub-container"><div class="meeting-layout"><div style="padding:25px"><h2 style="font-family:'Space Grotesk'">Community Hub</h2><p style="color:#6b7b8f;margin-top:5px">Connect, collaborate and learn together.</p></div><div class="meeting-layout" style="box-shadow:none;border:0;border-top:1px solid #e6ebf2;border-radius:0;display:grid;grid-template-columns:230px 1fr;min-height:500px"><div class="channel-sidebar"><div style="padding:20px;font-weight:700">Channels</div><div class="channel-list"><div class="channel active" onclick="switchChannel(this,'general-scholars')"><i class="fas fa-hashtag"></i> general-scholars</div><div class="channel" onclick="switchChannel(this,'career-mentorship')"><i class="fas fa-hashtag"></i> career-mentorship</div><div class="channel" onclick="switchChannel(this,'study-groups')"><i class="fas fa-hashtag"></i> study-groups</div></div></div><div style="display:flex;flex-direction:column"><div style="padding:20px;border-bottom:1px solid #e6ebf2;font-weight:700" id="current-channel-name"># general-scholars</div><div id="chat-box" style="padding:20px;flex:1;overflow:auto"><div class="message incoming"><div class="msg-content"><span class="msg-author">EFAC</span><p>Welcome to the scholar community.</p></div></div></div><div style="padding:15px;border-top:1px solid #e6ebf2;display:flex;gap:10px"><input id="chatInput" placeholder="Write a message..." style="flex:1;padding:12px;border:1px solid #e6ebf2;border-radius:12px"><button class="auth-btn" style="width:auto" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button></div></div></div></div></div></section>
 </main>
-
+<nav class="mobile-nav"><a href="#" class="active" onclick="showSection('dashboard');return false"><i class="fas fa-house"></i>Home</a><a href="#" onclick="showSection('reports-section');return false"><i class="fas fa-chart-line"></i>Academic</a><a href="#" onclick="showSection('meeting-hub');return false"><i class="fas fa-comments"></i>Community</a><a href="#" onclick="showSection('profile-section');return false"><i class="fas fa-user"></i>Profile</a></nav>
 <script src="script.js"></script>
-
-<div id="infoModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <div id="modal-body">
-            </div>
-    </div>
-</div>
 </body>
 </html>
